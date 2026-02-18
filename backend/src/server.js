@@ -156,9 +156,20 @@ const authMiddleware = (req, res, next) => {
 const app = express();
 app.use(cors());
 app.use(express.json());
+const publicPaths = new Set(['/', '/api/health']);
+
 app.use((req, res, next) => {
-  if (req.path === '/api/health') return next();
+  if (publicPaths.has(req.path)) return next();
   return authMiddleware(req, res, next);
+});
+
+app.get('/', (_, res) => {
+  res.json({
+    name: 'Monitor de Pátio API',
+    status: 'online',
+    health: '/api/health',
+    auth: 'Use Authorization: Bearer <APP_TOKEN> nos endpoints protegidos.'
+  });
 });
 
 app.get('/api/health', (_, res) => {

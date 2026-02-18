@@ -61,6 +61,13 @@ npx expo install expo-asset
 
 Depois rode novamente `npm start`.
 
+
+### Teste rápido no navegador
+
+- `http://SEU_IP:4000/` retorna status da API e instruções de autenticação.
+- `http://SEU_IP:4000/api/health` funciona sem token para validar conectividade.
+- Endpoints de dados (`/api/dashboard`, `/api/monitoring`, etc.) exigem `Authorization: Bearer <APP_TOKEN>`.
+
 ## Abrir Pull Request
 
 Existe um guia rápido de contribuição em [`CONTRIBUTING.md`](./CONTRIBUTING.md) com passo a passo para validar localmente e abrir PR.
