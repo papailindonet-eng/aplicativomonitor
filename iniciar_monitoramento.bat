@@ -113,6 +113,21 @@ if not exist "node_modules" (
 )
 popd
 
+
+set "EXPO_VERSION_RAW="
+for /f "usebackq delims=" %%V in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "(Get-Content -Raw '%MOBILE_DIR%\package.json' | ConvertFrom-Json).dependencies.expo"`) do (
+  if not defined EXPO_VERSION_RAW set "EXPO_VERSION_RAW=%%V"
+)
+
+set "EXPO_SDK="
+for /f "tokens=1 delims=.~" %%S in ("%EXPO_VERSION_RAW%") do set "EXPO_SDK=%%S"
+if defined EXPO_SDK (
+  echo.
+  echo [INFO] Projeto configurado para Expo SDK %EXPO_SDK%.
+  echo [INFO] Se o Expo Go do celular estiver em outra versao, instale a versao compativel em:
+  echo [INFO] https://expo.dev/go?sdkVersion=%EXPO_SDK%^&platform=android^&device=true
+)
+
 echo.
 echo [3/4] Iniciando backend em nova janela...
 start "Backend Monitor UJF" cmd /k "cd /d ""%BACKEND_DIR%"" && set ""APP_TOKEN=%APP_TOKEN%"" && npm start"

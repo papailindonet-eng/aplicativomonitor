@@ -62,6 +62,17 @@ npx expo install expo-asset
 Depois rode novamente `npm start`.
 
 
+
+### Erro: "Project is incompatible with this version of Expo Go"
+
+Se aparecer que o celular está com **Expo Go SDK 54** e o projeto está em **SDK 52**, use uma destas opções:
+
+1. **Mais rápido (sem mexer no código):** instalar o Expo Go compatível com o SDK do projeto pelo link
+   `https://expo.dev/go?sdkVersion=52&platform=android&device=true`
+2. **Ou atualizar o projeto para SDK 54** (processo maior, com ajuste de dependências).
+
+O `iniciar_monitoramento.bat` já mostra automaticamente qual SDK o projeto usa e imprime o link compatível.
+
 ### Teste rápido no navegador
 
 - `http://SEU_IP:4000/` retorna status da API e instruções de autenticação.
