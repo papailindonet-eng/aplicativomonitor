@@ -65,13 +65,24 @@ Depois rode novamente `npm start`.
 
 ### Erro: "Project is incompatible with this version of Expo Go"
 
-Se aparecer que o celular está com **Expo Go SDK 54** e o projeto está em **SDK 52**, use uma destas opções:
+Este projeto foi atualizado para **Expo SDK 54**. Se o erro continuar, rode dentro de `mobile/`:
 
-1. **Mais rápido (sem mexer no código):** instalar o Expo Go compatível com o SDK do projeto pelo link
-   `https://expo.dev/go?sdkVersion=52&platform=android&device=true`
-2. **Ou atualizar o projeto para SDK 54** (processo maior, com ajuste de dependências).
+```bash
+npm install
+npx expo install --fix
+npm start
+```
 
-O `iniciar_monitoramento.bat` já mostra automaticamente qual SDK o projeto usa e imprime o link compatível.
+Se ainda falhar, remova cache e reinstale:
+
+```bash
+rm -rf node_modules package-lock.json
+npm install
+npx expo install --fix
+npm start -- --clear
+```
+
+O `iniciar_monitoramento.bat` mostra automaticamente o SDK detectado e imprime o link do Expo Go compatível.
 
 ### Teste rápido no navegador
 
