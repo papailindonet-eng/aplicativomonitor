@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Monitor UJF",
+    "slug": "monitor-ujf",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0C1119"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "permissions": [
+        "RECEIVE_BOOT_COMPLETED",
+        "FOREGROUND_SERVICE"
+      ]
+    },
+    "plugins": [
+      "expo-notifications"
+    ]
+  }
+}
