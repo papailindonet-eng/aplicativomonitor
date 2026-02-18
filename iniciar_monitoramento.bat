@@ -94,11 +94,11 @@ popd
 
 echo.
 echo [3/4] Iniciando backend em nova janela...
-start "Backend Monitor UJF" cmd /k "cd /d \"%BACKEND_DIR%\" && set \"APP_TOKEN=%APP_TOKEN%\" && npm start"
+start "Backend Monitor UJF" cmd /k "cd /d ""%BACKEND_DIR%"" && set ""APP_TOKEN=%APP_TOKEN%"" && npm start"
 
 echo.
 echo [4/4] Iniciando Expo em nova janela...
-start "Mobile Expo Monitor UJF" cmd /k "cd /d \"%MOBILE_DIR%\" && npm start"
+start "Mobile Expo Monitor UJF" cmd /k "cd /d ""%MOBILE_DIR%"" && npm start"
 
 echo.
 echo Processo concluido.
