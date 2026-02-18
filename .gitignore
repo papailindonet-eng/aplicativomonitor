@@ -1,0 +1,8 @@
+node_modules
+npm-debug.log
+backend/data/store.json
+.expo
+.DS_Store
+.env
+backend/.env
+mobile/.env
