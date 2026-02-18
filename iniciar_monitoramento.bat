@@ -22,7 +22,7 @@ if not exist "%MOBILE_DIR%" (
 echo.
 echo ==============================================
 echo    Monitor UJF - Inicializacao automatica
- echo ==============================================
+echo ==============================================
 echo.
 
 where node >nul 2>nul
@@ -41,7 +41,28 @@ if errorlevel 1 (
 set /p APP_TOKEN=Digite o APP_TOKEN ^(padrao: change-me^): 
 if "%APP_TOKEN%"=="" set "APP_TOKEN=change-me"
 
-set /p API_IP=Digite o IP local do computador ^(ex: 192.168.0.10^): 
+set "API_IP="
+for /f "usebackq delims=" %%I in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "$ips = Get-NetIPAddress -AddressFamily IPv4 -ErrorAction SilentlyContinue ^| Where-Object { $_.IPAddress -notlike '127.*' -and $_.IPAddress -notlike '169.254*' -and $_.InterfaceAlias -notmatch 'Loopback|vEthernet|Hyper-V|Virtual|VMware|WSL|Docker' }; if($ips){ $ips[0].IPAddress }"`) do (
+  if not defined API_IP set "API_IP=%%I"
+)
+
+if not defined API_IP (
+  for /f "tokens=2 delims=: " %%I in ('ipconfig ^| findstr /R /C:"IPv4"') do (
+    if not defined API_IP set "API_IP=%%I"
+  )
+)
+
+set "API_IP=!API_IP: =!"
+
+if defined API_IP (
+  echo IP local detectado automaticamente: !API_IP!
+  set /p API_IP_INPUT=Pressione ENTER para usar este IP ou digite outro: 
+  if not "!API_IP_INPUT!"=="" set "API_IP=!API_IP_INPUT!"
+) else (
+  echo [AVISO] Nao foi possivel detectar seu IP automaticamente.
+  set /p API_IP=Digite o IP local do computador ^(ex: 192.168.0.10^): 
+)
+
 if "%API_IP%"=="" (
   echo [ERRO] IP nao informado.
   exit /b 1

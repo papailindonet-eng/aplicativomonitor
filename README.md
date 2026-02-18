@@ -42,10 +42,12 @@ Para automatizar backend + mobile no Windows, execute:
 iniciar_monitoramento.bat
 ```
 
+Voce nao precisa descobrir o IP manualmente: o script tenta detectar automaticamente e pede confirmacao.
+
 O script:
 - valida Node/npm;
 - instala dependências (se necessário);
-- configura `mobile/.env` com IP local e token;
+- detecta automaticamente o IP local (com opção de sobrescrever), configura `mobile/.env` com IP e token;
 - abre duas janelas (backend e Expo).
 
 ### Solução de erro comum no Expo
