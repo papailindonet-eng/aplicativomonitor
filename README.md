@@ -34,6 +34,20 @@ npm install
 EXPO_PUBLIC_API_URL='http://SEU_IP:4000/api' EXPO_PUBLIC_API_TOKEN='change-me' npm start
 ```
 
+### Automação no Windows (.bat)
+
+Para automatizar backend + mobile no Windows, execute:
+
+```bat
+iniciar_monitoramento.bat
+```
+
+O script:
+- valida Node/npm;
+- instala dependências (se necessário);
+- configura `mobile/.env` com IP local e token;
+- abre duas janelas (backend e Expo).
+
 ## Abrir Pull Request
 
 Existe um guia rápido de contribuição em [`CONTRIBUTING.md`](./CONTRIBUTING.md) com passo a passo para validar localmente e abrir PR.
