@@ -46,7 +46,7 @@ Voce nao precisa descobrir o IP manualmente: o script tenta detectar automaticam
 
 O script:
 - valida Node/npm;
-- instala dependências (se necessário);
+- sincroniza dependências do mobile a cada execução e corrige ausência do `expo-font`;
 - detecta automaticamente o IP local (com opção de sobrescrever), configura `mobile/.env` com IP e token;
 - abre duas janelas (backend e Expo).
 
@@ -61,6 +61,14 @@ npx expo install expo-asset
 
 Depois rode novamente `npm start`.
 
+
+Se aparecer `Unable to resolve module expo-font`, execute dentro de `mobile/`:
+
+```bash
+npm install
+npx expo install expo-font
+npm start -- --clear
+```
 
 
 ### Erro: "Project is incompatible with this version of Expo Go"

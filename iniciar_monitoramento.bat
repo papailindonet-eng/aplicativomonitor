@@ -103,10 +103,17 @@ if not exist "%MOBILE_DIR%\.env" (
 ) > "%MOBILE_DIR%\.env"
 
 pushd "%MOBILE_DIR%"
-if not exist "node_modules" (
-  echo Instalando dependencias do mobile...
-  call npm install || (
-    echo [ERRO] Falha no npm install do mobile.
+echo Sincronizando dependencias do mobile...
+call npm install || (
+  echo [ERRO] Falha no npm install do mobile.
+  popd
+  exit /b 1
+)
+
+if not exist "node_modules\expo-font" (
+  echo Instalando pacote ausente expo-font...
+  call npx expo install expo-font || (
+    echo [ERRO] Falha ao instalar expo-font.
     popd
     exit /b 1
   )
